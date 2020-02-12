@@ -1,0 +1,53 @@
+﻿<Window x:Class="MegaCastingApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MegaCastingApp"
+        mc:Ignorable="d"
+        Title="MegaCasting" >
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.Children>
+            <!-- Menu (ligne 0) -->
+            <Menu Grid.Row="0">
+                <MenuItem Header="Fichier" >
+                    <MenuItem 
+                        Header="Ajouter" 
+                        Command="{Binding ListingEnCours.AddCommand}"  />
+                    <MenuItem 
+                        Header="Modifier" 
+                        Command="{Binding ListingEnCours.UpdateCommand}"
+                        IsEnabled="{Binding ListingEnCours.Selected, Mode=OneWay, Converter={StaticResource NullToFalseConverter}, FallbackValue=false}"/>
+                    <MenuItem 
+                        Header="Supprimer" 
+                        Command="{Binding ListingEnCours.DeleteCommand}"
+                        IsEnabled="{Binding ListingEnCours.Selected, Mode=OneWay, Converter={StaticResource NullToFalseConverter}, FallbackValue=false}"/>
+                    <Separator  />
+                    <MenuItem Header="Quitter" Command="{Binding QuitterCommand}"  />
+                </MenuItem>
+                <MenuItem Header="Modules">
+                    <MenuItem Header="Casting" Click="ListCasting_Click" />
+                    <MenuItem Header="Annonceur" Click="ListAnnonceur_Click" />
+                    <MenuItem Header="Employe" Click="ListEmploye_Click" />
+                    <MenuItem Header="Contenu Editorial" Click="ListContenuEditorial_Click" />
+                    <MenuItem Header="Offre" Click="ListOffre_Click"  />
+                    <MenuItem Header="Partenaire" Click="ListPartenaireDiffusion_Click" />
+                </MenuItem>
+                <MenuItem Header="Ref" >
+                    <MenuItem Header="Métier" Click="ListMetier_Click" />
+                    <MenuItem Header="Domaine" Click="ListDomaine_Click"/>
+                    <MenuItem Header="Type de contenu éditorial" Click="ListTypeContenuEditorial_Click" />
+                    <MenuItem Header="Role employé" Click="ListRoleEmploye_Click" />
+                </MenuItem>
+            </Menu>
+            <!-- Contenu (UserControl) (ligne 1) -->
+            <Grid Grid.Row="1" x:Name="Contenu" >
+                <!-- On ajoutera en dynamique notre usercontrol -->
+            </Grid>
+        </Grid.Children>
+    </Grid>
+</Window>

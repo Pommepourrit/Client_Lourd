@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="72283d55d23f4bbc95c2bb5abccea9ce" Name="Diagram1" ZoomLevel="34">
+        <EntityTypeShape EntityType="MegaProductionBDDModel.Annonceur" Width="1.5" PointX="5.625" PointY="4.75" />
+        <EntityTypeShape EntityType="MegaProductionBDDModel.Artiste" Width="1.5" PointX="12.125" PointY="8" />
+        <EntityTypeShape EntityType="MegaProductionBDDModel.Casting" Width="1.5" PointX="9.875" PointY="7.75" />
+        <EntityTypeShape EntityType="MegaProductionBDDModel.ContenuEditorial" Width="1.5" PointX="7.125" PointY="15.375" />
+        <EntityTypeShape EntityType="MegaProductionBDDModel.Domaine" Width="1.5" PointX="1" PointY="12.125" />
+        <EntityTypeShape EntityType="MegaProductionBDDModel.Employe" Width="1.5" PointX="11" PointY="13.125" />
+        <EntityTypeShape EntityType="MegaProductionBDDModel.Metier" Width="1.5" PointX="4.125" PointY="12.125" />
+        <EntityTypeShape EntityType="MegaProductionBDDModel.Offre" Width="1.5" PointX="5.625" PointY="2.5" />
+        <EntityTypeShape EntityType="MegaProductionBDDModel.PartenaireDiffusion" Width="1.5" PointX="1" PointY="6.375" />
+        <EntityTypeShape EntityType="MegaProductionBDDModel.RoleEmploye" Width="1.5" PointX="10.875" PointY="16.875" />
+        <EntityTypeShape EntityType="MegaProductionBDDModel.TypeContenuEditorial" Width="1.5" PointX="3.75" PointY="15.75" />
+        <AssociationConnector Association="MegaProductionBDDModel.FK_Casting_Annonceur" />
+        <AssociationConnector Association="MegaProductionBDDModel.FK_Casting_Employe" />
+        <AssociationConnector Association="MegaProductionBDDModel.FK_Casting_Metier" />
+        <AssociationConnector Association="MegaProductionBDDModel.FK_ContenuEditorial_TypeContenuEditorial" />
+        <AssociationConnector Association="MegaProductionBDDModel.FK_Metier_Domaine" />
+        <AssociationConnector Association="MegaProductionBDDModel.FK_Employe_RoleEmploye" />
+        <AssociationConnector Association="MegaProductionBDDModel.ArtisteParCasting" />
+        <AssociationConnector Association="MegaProductionBDDModel.DomaineParPartenaire" />
+        <AssociationConnector Association="MegaProductionBDDModel.MetierContenu" />
+        <AssociationConnector Association="MegaProductionBDDModel.MetierParAnnonceur" />
+        <AssociationConnector Association="MegaProductionBDDModel.OffreAnnonceur" />
+        <AssociationConnector Association="MegaProductionBDDModel.PartenaireParAnnonceur" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,107 @@
+﻿<Window x:Class="MegaCastingApp.Windows.Items.CastingItemWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MegaCastingApp.Windows.Items"
+        mc:Ignorable="d"
+        Title="Casting" SizeToContent="WidthAndHeight">
+    <Grid>
+        <StackPanel Orientation="Vertical">
+            <StackPanel Orientation="Horizontal" Margin="12">
+                <TextBlock Text="Libelle : " Width="120"></TextBlock>
+                <TextBox 
+                    Text="{Binding Libelle, UpdateSourceTrigger=PropertyChanged}"
+                    MinWidth="300"></TextBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="12">
+                <TextBlock Text="Début publication : " Width="120"></TextBlock>
+                <DatePicker 
+                    SelectedDate="{Binding Date_Debut_Publication, UpdateSourceTrigger=PropertyChanged}"
+                    MinWidth="300"></DatePicker>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="12">
+                <TextBlock Text="Durée diffusion : " Width="120"></TextBlock>
+                <TextBox 
+                    Text="{Binding Nb_Jour_Diffusion, UpdateSourceTrigger=PropertyChanged}"
+                    MinWidth="300"></TextBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="12">
+                <TextBlock Text="Début contrat : " Width="120"></TextBlock>
+                <DatePicker 
+                    SelectedDate="{Binding Date_Debut_Contrat, UpdateSourceTrigger=PropertyChanged}"
+                    MinWidth="300"></DatePicker>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="12">
+                <TextBlock Text="Nombre de postes : " Width="120"></TextBlock>
+                <TextBox 
+                    Text="{Binding Nb_Poste, UpdateSourceTrigger=PropertyChanged}"
+                    MinWidth="300">
+                </TextBox>
+                <Image 
+                    ToolTip="{Binding Nb_Poste_Error}" 
+                    Visibility="{Binding Nb_Poste_IsOk, Mode=OneWay, Converter={StaticResource FalseToVisibleConverter}}" 
+                    Source="../../Images/warning.jpg" Height="16" Margin="2">
+                </Image>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="12">
+                <TextBlock Text="Description poste : " Width="120"></TextBlock>
+                <TextBox 
+                    Text="{Binding Description_Poste, UpdateSourceTrigger=PropertyChanged}"
+                    MinWidth="300"></TextBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="12">
+                <TextBlock Text="Description profil : " Width="120"></TextBlock>
+                <TextBox 
+                    Text="{Binding Description_Profil, UpdateSourceTrigger=PropertyChanged}"
+                    MinWidth="300"></TextBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="12">
+                <TextBlock Text="Type de contrat : " Width="120"></TextBlock>
+                <TextBox 
+                    Text="{Binding Type_Contrat, UpdateSourceTrigger=PropertyChanged}"
+                    MinWidth="300"></TextBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="12">
+                <TextBlock Text="Adresse du contrat : " Width="120"></TextBlock>
+                <TextBox 
+                    Text="{Binding Adresse_Contrat, UpdateSourceTrigger=PropertyChanged}"
+                    MinWidth="300"></TextBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="12">
+                <TextBlock Text="Employe Créateur : " Width="120"></TextBlock>
+                <ComboBox 
+                    Grid.Column="2"
+                    MinWidth="150"
+                    SelectedItem="{Binding Path=EmployeSelectionne, UpdateSourceTrigger=PropertyChanged}"
+                    DisplayMemberPath="Nom_Utilisateur"
+                    ItemsSource="{Binding Employes}">
+                </ComboBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="12">
+                <TextBlock Text="Métier : " Width="120"></TextBlock>
+                <ComboBox 
+                    Grid.Column="2"
+                    MinWidth="150"
+                    SelectedItem="{Binding Path=MetierSelectionne, UpdateSourceTrigger=PropertyChanged}"
+                    DisplayMemberPath="Libelle"
+                    ItemsSource="{Binding Metiers}">
+                </ComboBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="12">
+                <TextBlock Text="Annonceur : " Width="120"></TextBlock>
+                <ComboBox 
+                    Grid.Column="2"
+                    MinWidth="150"
+                    SelectedItem="{Binding Path=EmployeSelectionne, UpdateSourceTrigger=PropertyChanged}"
+                    DisplayMemberPath="Libelle"
+                    ItemsSource="{Binding LstAnnonceurs}">
+                </ComboBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button Width="100" Height="50" Content="Ok" Command="{Binding ValiderCommand}" Margin="12"></Button>
+                <Button Width="100" Height="50" Content="Annuler" Command="{Binding CancelCommand}" Margin="12"></Button>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>

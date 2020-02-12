@@ -1,0 +1,25 @@
+﻿<UserControl x:Class="MegaCastingApp.Windows.Listings.ContenuEditorialListWindow"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MegaCastingApp.Windows.Listings"
+             mc:Ignorable="d" >
+    <Grid>
+        <DataGrid
+                ItemsSource="{Binding Items}"
+                SelectedItem="{Binding Selected, UpdateSourceTrigger=PropertyChanged}"
+                SelectionMode="Single"    
+                AutoGenerateColumns="False"
+                CanUserAddRows="False"
+                CanUserDeleteRows="False"
+                IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="#" Binding="{Binding Identifiant}" />
+                <DataGridTextColumn Header="Titre" Binding="{Binding Titre}" />
+                <DataGridTextColumn Header="Date publication" Binding="{Binding Date_Publication}" />
+                <DataGridTextColumn Header="Type" Binding="{Binding LibelleTypeContenu}" />
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</UserControl>

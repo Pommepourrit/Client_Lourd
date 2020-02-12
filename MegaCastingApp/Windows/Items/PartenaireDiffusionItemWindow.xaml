@@ -1,0 +1,75 @@
+﻿<Window x:Class="MegaCastingApp.Windows.Items.PartenaireDiffusionItemWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MegaCastingApp.Windows.Items"
+        mc:Ignorable="d"
+        Title="Partenaire de diffusion" SizeToContent="WidthAndHeight">
+    <Grid>
+        <StackPanel Orientation="Vertical">
+            <StackPanel Orientation="Horizontal" Margin="12">
+                <TextBlock Text="Libelle : " Width="120" />
+                <TextBox Text="{Binding Libelle, UpdateSourceTrigger=PropertyChanged}" MinWidth="200" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="12">
+                <TextBlock Text="Adresse mail : " Width="120" />
+                <TextBox Text="{Binding Mail, UpdateSourceTrigger=PropertyChanged}" MinWidth="200" />
+                <!--<Image ToolTip="{Binding Nb_Poste_Error}" Visibility="{Binding Nb_Poste_IsOk, Mode=OneWay, Converter={StaticResource FalseToVisibleConverter}}" Source="../../Images/warning.jpg" Height="16" Margin="2"></Image>-->
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="12">
+                <TextBlock Text="Telephone : " Width="120" />
+                <TextBox Text="{Binding Telephone, UpdateSourceTrigger=PropertyChanged}" MinWidth="200" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="12">
+                <TextBlock Text="Nom du contact : " Width="120" />
+                <TextBox Text="{Binding Nom_Contact, UpdateSourceTrigger=PropertyChanged}" MinWidth="200" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="12">
+                <TextBlock Text="Prénom du contact: " Width="120" />
+                <TextBox Text="{Binding Prenom_Contact, UpdateSourceTrigger=PropertyChanged}" MinWidth="200" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="12">
+                <TextBlock Text="Adresse mail contact : " Width="120" />
+                <TextBox Text="{Binding Mail_Contact, UpdateSourceTrigger=PropertyChanged}" MinWidth="200" />
+                <!--<Image ToolTip="{Binding Nb_Poste_Error}" Visibility="{Binding Nb_Poste_IsOk, Mode=OneWay, Converter={StaticResource FalseToVisibleConverter}}" Source="../../Images/warning.jpg" Height="16" Margin="2"></Image>-->
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="12">
+                <TextBlock Text="Adresse : " Width="120" />
+                <TextBox Text="{Binding Adresse, UpdateSourceTrigger=PropertyChanged}" MinWidth="200" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="12">
+                <TextBlock Text="Code postal : " Width="120" />
+                <TextBox Text="{Binding Code_Postal, UpdateSourceTrigger=PropertyChanged}" MinWidth="200" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="12">
+                <TextBlock Text="Ville : " Width="120" />
+                <TextBox Text="{Binding Ville, UpdateSourceTrigger=PropertyChanged}" MinWidth="200" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="12">
+                <TextBlock Text="Site internet : " Width="120" />
+                <TextBox Text="{Binding Site, UpdateSourceTrigger=PropertyChanged}" MinWidth="200" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="12">
+                <TextBlock Text="Telephone du contact: " Width="120" />
+                <TextBox Text="{Binding Telephone_Contact, UpdateSourceTrigger=PropertyChanged}" MinWidth="200" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="12">
+                <TextBlock Text="Nom d'utilisateur : " Width="120" />
+                <TextBox Text="{Binding Nom_Utilisateur, UpdateSourceTrigger=PropertyChanged}" MinWidth="200" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="12">
+                <TextBlock Text="Mot de passe : " Width="120" />
+                <PasswordBox PasswordChar="*" x:Name="passwordBox" MinWidth="200" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="12">
+                <TextBlock Text="Confirmation : " Width="120" />
+                <PasswordBox PasswordChar="*" x:Name="confirmationPasswordBox" MinWidth="200" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button Width="100" Height="50" Content="Ok" Command="{Binding ValiderCommand}" Margin="12"></Button>
+                <Button Width="100" Height="50" Content="Annuler" Command="{Binding CancelCommand}" Margin="12"></Button>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>

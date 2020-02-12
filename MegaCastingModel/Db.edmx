@@ -1,0 +1,1014 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="MegaProductionBDDModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Annonceur">
+          <Key>
+            <PropertyRef Name="Identifiant" />
+          </Key>
+          <Property Name="Identifiant" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Libelle" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Mail" Type="nvarchar" MaxLength="50" />
+          <Property Name="Telephone" Type="nvarchar" MaxLength="50" />
+          <Property Name="Nom_Contact" Type="nvarchar" MaxLength="50" />
+          <Property Name="Prenom_Contact" Type="nvarchar" MaxLength="50" />
+          <Property Name="Mail_Contact" Type="nvarchar" MaxLength="50" />
+          <Property Name="Telephone_Contact" Type="nvarchar" MaxLength="50" />
+          <Property Name="Adresse" Type="nvarchar" MaxLength="255" />
+          <Property Name="Code_Postal" Type="nvarchar" MaxLength="10" />
+          <Property Name="Ville" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Artiste">
+          <Key>
+            <PropertyRef Name="Identifiant" />
+          </Key>
+          <Property Name="Identifiant" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nom" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Prenom" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Mail" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Telephone" Type="nvarchar" MaxLength="50" />
+          <Property Name="Adresse" Type="nvarchar" MaxLength="255" />
+          <Property Name="Code_Postal" Type="nvarchar" MaxLength="10" />
+          <Property Name="Ville" Type="nvarchar" MaxLength="50" />
+          <Property Name="CV" Type="text" />
+        </EntityType>
+        <EntityType Name="ArtisteParCasting">
+          <Key>
+            <PropertyRef Name="Artiste" />
+            <PropertyRef Name="Casting" />
+          </Key>
+          <Property Name="Artiste" Type="bigint" Nullable="false" />
+          <Property Name="Casting" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Casting">
+          <Key>
+            <PropertyRef Name="Identifiant" />
+          </Key>
+          <Property Name="Identifiant" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Libelle" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Date_Debut_Publication" Type="datetime" />
+          <Property Name="Nb_Jour_Diffusion" Type="int" Nullable="false" />
+          <Property Name="Date_Debut_Contrat" Type="datetime" />
+          <Property Name="Nb_Poste" Type="int" />
+          <Property Name="Description_Poste" Type="text" />
+          <Property Name="Description_Profil" Type="text" />
+          <Property Name="Type_Contrat" Type="nvarchar" MaxLength="255" />
+          <Property Name="Adresse_Contrat" Type="nvarchar" MaxLength="255" />
+          <Property Name="Annonceur" Type="bigint" Nullable="false" />
+          <Property Name="Employe" Type="bigint" Nullable="false" />
+          <Property Name="Metier" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ContenuEditorial">
+          <Key>
+            <PropertyRef Name="Identifiant" />
+          </Key>
+          <Property Name="Identifiant" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Titre" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Date_Publication" Type="datetime" />
+          <Property Name="Type" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Domaine">
+          <Key>
+            <PropertyRef Name="Identifiant" />
+          </Key>
+          <Property Name="Identifiant" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Libelle" Type="nvarchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DomaineParPartenaire">
+          <Key>
+            <PropertyRef Name="Domaine" />
+            <PropertyRef Name="Partenaire" />
+          </Key>
+          <Property Name="Domaine" Type="bigint" Nullable="false" />
+          <Property Name="Partenaire" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Employe">
+          <Key>
+            <PropertyRef Name="Identifiant" />
+          </Key>
+          <Property Name="Identifiant" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Role" Type="bigint" Nullable="false" />
+          <Property Name="Nom" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Prenom" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Mail" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Nom_Utilisateur" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Mot_De_Passe" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Metier">
+          <Key>
+            <PropertyRef Name="Identifiant" />
+          </Key>
+          <Property Name="Identifiant" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Libelle" Type="nvarchar" MaxLength="255" />
+          <Property Name="Domaine" Type="bigint" />
+        </EntityType>
+        <EntityType Name="MetierContenu">
+          <Key>
+            <PropertyRef Name="Metier" />
+            <PropertyRef Name="Contenu_Editorial" />
+          </Key>
+          <Property Name="Metier" Type="bigint" Nullable="false" />
+          <Property Name="Contenu_Editorial" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MetierParAnnonceur">
+          <Key>
+            <PropertyRef Name="Metier" />
+            <PropertyRef Name="Annonceur" />
+          </Key>
+          <Property Name="Metier" Type="bigint" Nullable="false" />
+          <Property Name="Annonceur" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Offre">
+          <Key>
+            <PropertyRef Name="Identifiant" />
+          </Key>
+          <Property Name="Identifiant" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Type" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Tarif" Type="float" Nullable="false" />
+          <Property Name="Nb_Casting" Type="int" />
+        </EntityType>
+        <EntityType Name="OffreAnnonceur">
+          <Key>
+            <PropertyRef Name="Offre" />
+            <PropertyRef Name="Annonceur" />
+          </Key>
+          <Property Name="Offre" Type="bigint" Nullable="false" />
+          <Property Name="Annonceur" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PartenaireDiffusion">
+          <Key>
+            <PropertyRef Name="Identifiant" />
+          </Key>
+          <Property Name="Identifiant" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Libelle" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Mail" Type="nvarchar" MaxLength="50" />
+          <Property Name="Telephone" Type="nvarchar" MaxLength="50" />
+          <Property Name="Nom_Contact" Type="nvarchar" MaxLength="50" />
+          <Property Name="Prenom_Contact" Type="nvarchar" MaxLength="50" />
+          <Property Name="Mail_Contact" Type="nvarchar" MaxLength="50" />
+          <Property Name="Telephone_Contact" Type="nvarchar" MaxLength="50" />
+          <Property Name="Adresse" Type="nvarchar" MaxLength="50" />
+          <Property Name="Code_Postal" Type="nvarchar" MaxLength="10" />
+          <Property Name="Ville" Type="nvarchar" MaxLength="50" />
+          <Property Name="Site" Type="nvarchar" MaxLength="255" />
+          <Property Name="Nom_Utilisateur" Type="nvarchar" MaxLength="50" />
+          <Property Name="Mot_De_Passe" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="PartenaireParAnnonceur">
+          <Key>
+            <PropertyRef Name="Partenaire_Diffusion" />
+            <PropertyRef Name="Annonceur" />
+          </Key>
+          <Property Name="Partenaire_Diffusion" Type="bigint" Nullable="false" />
+          <Property Name="Annonceur" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RoleEmploye">
+          <Key>
+            <PropertyRef Name="Identifiant" />
+          </Key>
+          <Property Name="Identifiant" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Libelle" Type="nvarchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TypeContenuEditorial">
+          <Key>
+            <PropertyRef Name="Identifiant" />
+          </Key>
+          <Property Name="Identifiant" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Libelle" Type="nvarchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_ArtisteParCasting_Artiste">
+          <End Role="Artiste" Type="Self.Artiste" Multiplicity="1" />
+          <End Role="ArtisteParCasting" Type="Self.ArtisteParCasting" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Artiste">
+              <PropertyRef Name="Identifiant" />
+            </Principal>
+            <Dependent Role="ArtisteParCasting">
+              <PropertyRef Name="Artiste" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ArtisteParCasting_Casting">
+          <End Role="Casting" Type="Self.Casting" Multiplicity="1" />
+          <End Role="ArtisteParCasting" Type="Self.ArtisteParCasting" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Casting">
+              <PropertyRef Name="Identifiant" />
+            </Principal>
+            <Dependent Role="ArtisteParCasting">
+              <PropertyRef Name="Casting" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Casting_Annonceur">
+          <End Role="Annonceur" Type="Self.Annonceur" Multiplicity="1" />
+          <End Role="Casting" Type="Self.Casting" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Annonceur">
+              <PropertyRef Name="Identifiant" />
+            </Principal>
+            <Dependent Role="Casting">
+              <PropertyRef Name="Annonceur" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Casting_Employe">
+          <End Role="Employe" Type="Self.Employe" Multiplicity="1" />
+          <End Role="Casting" Type="Self.Casting" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employe">
+              <PropertyRef Name="Identifiant" />
+            </Principal>
+            <Dependent Role="Casting">
+              <PropertyRef Name="Employe" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Casting_Metier">
+          <End Role="Metier" Type="Self.Metier" Multiplicity="1" />
+          <End Role="Casting" Type="Self.Casting" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Metier">
+              <PropertyRef Name="Identifiant" />
+            </Principal>
+            <Dependent Role="Casting">
+              <PropertyRef Name="Metier" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ContenuEditorial_TypeContenuEditorial">
+          <End Role="TypeContenuEditorial" Type="Self.TypeContenuEditorial" Multiplicity="1" />
+          <End Role="ContenuEditorial" Type="Self.ContenuEditorial" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeContenuEditorial">
+              <PropertyRef Name="Identifiant" />
+            </Principal>
+            <Dependent Role="ContenuEditorial">
+              <PropertyRef Name="Type" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DomaineParPartenaire_Domaine">
+          <End Role="Domaine" Type="Self.Domaine" Multiplicity="1" />
+          <End Role="DomaineParPartenaire" Type="Self.DomaineParPartenaire" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Domaine">
+              <PropertyRef Name="Identifiant" />
+            </Principal>
+            <Dependent Role="DomaineParPartenaire">
+              <PropertyRef Name="Domaine" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DomaineParPartenaire_PartenaireDiffusion">
+          <End Role="PartenaireDiffusion" Type="Self.PartenaireDiffusion" Multiplicity="1" />
+          <End Role="DomaineParPartenaire" Type="Self.DomaineParPartenaire" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PartenaireDiffusion">
+              <PropertyRef Name="Identifiant" />
+            </Principal>
+            <Dependent Role="DomaineParPartenaire">
+              <PropertyRef Name="Partenaire" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employe_RoleEmploye">
+          <End Role="RoleEmploye" Type="Self.RoleEmploye" Multiplicity="1" />
+          <End Role="Employe" Type="Self.Employe" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RoleEmploye">
+              <PropertyRef Name="Identifiant" />
+            </Principal>
+            <Dependent Role="Employe">
+              <PropertyRef Name="Role" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Metier_Domaine">
+          <End Role="Domaine" Type="Self.Domaine" Multiplicity="0..1" />
+          <End Role="Metier" Type="Self.Metier" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Domaine">
+              <PropertyRef Name="Identifiant" />
+            </Principal>
+            <Dependent Role="Metier">
+              <PropertyRef Name="Domaine" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MetierContenu_ContenuEditorial">
+          <End Role="ContenuEditorial" Type="Self.ContenuEditorial" Multiplicity="1" />
+          <End Role="MetierContenu" Type="Self.MetierContenu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ContenuEditorial">
+              <PropertyRef Name="Identifiant" />
+            </Principal>
+            <Dependent Role="MetierContenu">
+              <PropertyRef Name="Contenu_Editorial" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MetierContenu_Metier">
+          <End Role="Metier" Type="Self.Metier" Multiplicity="1" />
+          <End Role="MetierContenu" Type="Self.MetierContenu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Metier">
+              <PropertyRef Name="Identifiant" />
+            </Principal>
+            <Dependent Role="MetierContenu">
+              <PropertyRef Name="Metier" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MetierParAnnonceur_Annonceur">
+          <End Role="Annonceur" Type="Self.Annonceur" Multiplicity="1" />
+          <End Role="MetierParAnnonceur" Type="Self.MetierParAnnonceur" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Annonceur">
+              <PropertyRef Name="Identifiant" />
+            </Principal>
+            <Dependent Role="MetierParAnnonceur">
+              <PropertyRef Name="Annonceur" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MetierParAnnonceur_Metier">
+          <End Role="Metier" Type="Self.Metier" Multiplicity="1" />
+          <End Role="MetierParAnnonceur" Type="Self.MetierParAnnonceur" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Metier">
+              <PropertyRef Name="Identifiant" />
+            </Principal>
+            <Dependent Role="MetierParAnnonceur">
+              <PropertyRef Name="Metier" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OffreAnnonceur_Annonceur">
+          <End Role="Annonceur" Type="Self.Annonceur" Multiplicity="1" />
+          <End Role="OffreAnnonceur" Type="Self.OffreAnnonceur" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Annonceur">
+              <PropertyRef Name="Identifiant" />
+            </Principal>
+            <Dependent Role="OffreAnnonceur">
+              <PropertyRef Name="Annonceur" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OffreAnnonceur_Offre">
+          <End Role="Offre" Type="Self.Offre" Multiplicity="1" />
+          <End Role="OffreAnnonceur" Type="Self.OffreAnnonceur" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Offre">
+              <PropertyRef Name="Identifiant" />
+            </Principal>
+            <Dependent Role="OffreAnnonceur">
+              <PropertyRef Name="Offre" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PartenaireParAnnonceur_Annonceur">
+          <End Role="Annonceur" Type="Self.Annonceur" Multiplicity="1" />
+          <End Role="PartenaireParAnnonceur" Type="Self.PartenaireParAnnonceur" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Annonceur">
+              <PropertyRef Name="Identifiant" />
+            </Principal>
+            <Dependent Role="PartenaireParAnnonceur">
+              <PropertyRef Name="Annonceur" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PartenaireParAnnonceur_PartenaireDiffusion">
+          <End Role="PartenaireDiffusion" Type="Self.PartenaireDiffusion" Multiplicity="1" />
+          <End Role="PartenaireParAnnonceur" Type="Self.PartenaireParAnnonceur" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PartenaireDiffusion">
+              <PropertyRef Name="Identifiant" />
+            </Principal>
+            <Dependent Role="PartenaireParAnnonceur">
+              <PropertyRef Name="Partenaire_Diffusion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MegaProductionBDDModelStoreContainer">
+          <EntitySet Name="Annonceur" EntityType="Self.Annonceur" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Artiste" EntityType="Self.Artiste" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ArtisteParCasting" EntityType="Self.ArtisteParCasting" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Casting" EntityType="Self.Casting" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ContenuEditorial" EntityType="Self.ContenuEditorial" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Domaine" EntityType="Self.Domaine" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DomaineParPartenaire" EntityType="Self.DomaineParPartenaire" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Employe" EntityType="Self.Employe" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Metier" EntityType="Self.Metier" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MetierContenu" EntityType="Self.MetierContenu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MetierParAnnonceur" EntityType="Self.MetierParAnnonceur" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Offre" EntityType="Self.Offre" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OffreAnnonceur" EntityType="Self.OffreAnnonceur" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PartenaireDiffusion" EntityType="Self.PartenaireDiffusion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PartenaireParAnnonceur" EntityType="Self.PartenaireParAnnonceur" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RoleEmploye" EntityType="Self.RoleEmploye" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TypeContenuEditorial" EntityType="Self.TypeContenuEditorial" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_ArtisteParCasting_Artiste" Association="Self.FK_ArtisteParCasting_Artiste">
+            <End Role="Artiste" EntitySet="Artiste" />
+            <End Role="ArtisteParCasting" EntitySet="ArtisteParCasting" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ArtisteParCasting_Casting" Association="Self.FK_ArtisteParCasting_Casting">
+            <End Role="Casting" EntitySet="Casting" />
+            <End Role="ArtisteParCasting" EntitySet="ArtisteParCasting" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Casting_Annonceur" Association="Self.FK_Casting_Annonceur">
+            <End Role="Annonceur" EntitySet="Annonceur" />
+            <End Role="Casting" EntitySet="Casting" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Casting_Employe" Association="Self.FK_Casting_Employe">
+            <End Role="Employe" EntitySet="Employe" />
+            <End Role="Casting" EntitySet="Casting" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Casting_Metier" Association="Self.FK_Casting_Metier">
+            <End Role="Metier" EntitySet="Metier" />
+            <End Role="Casting" EntitySet="Casting" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ContenuEditorial_TypeContenuEditorial" Association="Self.FK_ContenuEditorial_TypeContenuEditorial">
+            <End Role="TypeContenuEditorial" EntitySet="TypeContenuEditorial" />
+            <End Role="ContenuEditorial" EntitySet="ContenuEditorial" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DomaineParPartenaire_Domaine" Association="Self.FK_DomaineParPartenaire_Domaine">
+            <End Role="Domaine" EntitySet="Domaine" />
+            <End Role="DomaineParPartenaire" EntitySet="DomaineParPartenaire" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DomaineParPartenaire_PartenaireDiffusion" Association="Self.FK_DomaineParPartenaire_PartenaireDiffusion">
+            <End Role="PartenaireDiffusion" EntitySet="PartenaireDiffusion" />
+            <End Role="DomaineParPartenaire" EntitySet="DomaineParPartenaire" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employe_RoleEmploye" Association="Self.FK_Employe_RoleEmploye">
+            <End Role="RoleEmploye" EntitySet="RoleEmploye" />
+            <End Role="Employe" EntitySet="Employe" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Metier_Domaine" Association="Self.FK_Metier_Domaine">
+            <End Role="Domaine" EntitySet="Domaine" />
+            <End Role="Metier" EntitySet="Metier" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MetierContenu_ContenuEditorial" Association="Self.FK_MetierContenu_ContenuEditorial">
+            <End Role="ContenuEditorial" EntitySet="ContenuEditorial" />
+            <End Role="MetierContenu" EntitySet="MetierContenu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MetierContenu_Metier" Association="Self.FK_MetierContenu_Metier">
+            <End Role="Metier" EntitySet="Metier" />
+            <End Role="MetierContenu" EntitySet="MetierContenu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MetierParAnnonceur_Annonceur" Association="Self.FK_MetierParAnnonceur_Annonceur">
+            <End Role="Annonceur" EntitySet="Annonceur" />
+            <End Role="MetierParAnnonceur" EntitySet="MetierParAnnonceur" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MetierParAnnonceur_Metier" Association="Self.FK_MetierParAnnonceur_Metier">
+            <End Role="Metier" EntitySet="Metier" />
+            <End Role="MetierParAnnonceur" EntitySet="MetierParAnnonceur" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OffreAnnonceur_Annonceur" Association="Self.FK_OffreAnnonceur_Annonceur">
+            <End Role="Annonceur" EntitySet="Annonceur" />
+            <End Role="OffreAnnonceur" EntitySet="OffreAnnonceur" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OffreAnnonceur_Offre" Association="Self.FK_OffreAnnonceur_Offre">
+            <End Role="Offre" EntitySet="Offre" />
+            <End Role="OffreAnnonceur" EntitySet="OffreAnnonceur" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PartenaireParAnnonceur_Annonceur" Association="Self.FK_PartenaireParAnnonceur_Annonceur">
+            <End Role="Annonceur" EntitySet="Annonceur" />
+            <End Role="PartenaireParAnnonceur" EntitySet="PartenaireParAnnonceur" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PartenaireParAnnonceur_PartenaireDiffusion" Association="Self.FK_PartenaireParAnnonceur_PartenaireDiffusion">
+            <End Role="PartenaireDiffusion" EntitySet="PartenaireDiffusion" />
+            <End Role="PartenaireParAnnonceur" EntitySet="PartenaireParAnnonceur" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MegaProductionBDDModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="MegaProductionBDDEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Annonceur" EntityType="MegaProductionBDDModel.Annonceur" />
+          <EntitySet Name="Artiste" EntityType="MegaProductionBDDModel.Artiste" />
+          <EntitySet Name="Casting" EntityType="MegaProductionBDDModel.Casting" />
+          <EntitySet Name="ContenuEditorial" EntityType="MegaProductionBDDModel.ContenuEditorial" />
+          <EntitySet Name="Domaine" EntityType="MegaProductionBDDModel.Domaine" />
+          <EntitySet Name="Employe" EntityType="MegaProductionBDDModel.Employe" />
+          <EntitySet Name="Metier" EntityType="MegaProductionBDDModel.Metier" />
+          <EntitySet Name="Offre" EntityType="MegaProductionBDDModel.Offre" />
+          <EntitySet Name="PartenaireDiffusion" EntityType="MegaProductionBDDModel.PartenaireDiffusion" />
+          <EntitySet Name="RoleEmploye" EntityType="MegaProductionBDDModel.RoleEmploye" />
+          <EntitySet Name="TypeContenuEditorial" EntityType="MegaProductionBDDModel.TypeContenuEditorial" />
+          <AssociationSet Name="FK_Casting_Annonceur" Association="MegaProductionBDDModel.FK_Casting_Annonceur">
+            <End Role="Annonceur" EntitySet="Annonceur" />
+            <End Role="Casting" EntitySet="Casting" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Casting_Employe" Association="MegaProductionBDDModel.FK_Casting_Employe">
+            <End Role="Employe" EntitySet="Employe" />
+            <End Role="Casting" EntitySet="Casting" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Casting_Metier" Association="MegaProductionBDDModel.FK_Casting_Metier">
+            <End Role="Metier" EntitySet="Metier" />
+            <End Role="Casting" EntitySet="Casting" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ContenuEditorial_TypeContenuEditorial" Association="MegaProductionBDDModel.FK_ContenuEditorial_TypeContenuEditorial">
+            <End Role="TypeContenuEditorial" EntitySet="TypeContenuEditorial" />
+            <End Role="ContenuEditorial" EntitySet="ContenuEditorial" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Metier_Domaine" Association="MegaProductionBDDModel.FK_Metier_Domaine">
+            <End Role="Domaine" EntitySet="Domaine" />
+            <End Role="Metier" EntitySet="Metier" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employe_RoleEmploye" Association="MegaProductionBDDModel.FK_Employe_RoleEmploye">
+            <End Role="RoleEmploye" EntitySet="RoleEmploye" />
+            <End Role="Employe" EntitySet="Employe" />
+          </AssociationSet>
+          <AssociationSet Name="ArtisteParCasting" Association="MegaProductionBDDModel.ArtisteParCasting">
+            <End Role="Artiste" EntitySet="Artiste" />
+            <End Role="Casting" EntitySet="Casting" />
+          </AssociationSet>
+          <AssociationSet Name="DomaineParPartenaire" Association="MegaProductionBDDModel.DomaineParPartenaire">
+            <End Role="Domaine" EntitySet="Domaine" />
+            <End Role="PartenaireDiffusion" EntitySet="PartenaireDiffusion" />
+          </AssociationSet>
+          <AssociationSet Name="MetierContenu" Association="MegaProductionBDDModel.MetierContenu">
+            <End Role="ContenuEditorial" EntitySet="ContenuEditorial" />
+            <End Role="Metier" EntitySet="Metier" />
+          </AssociationSet>
+          <AssociationSet Name="MetierParAnnonceur" Association="MegaProductionBDDModel.MetierParAnnonceur">
+            <End Role="Annonceur" EntitySet="Annonceur" />
+            <End Role="Metier" EntitySet="Metier" />
+          </AssociationSet>
+          <AssociationSet Name="OffreAnnonceur" Association="MegaProductionBDDModel.OffreAnnonceur">
+            <End Role="Annonceur" EntitySet="Annonceur" />
+            <End Role="Offre" EntitySet="Offre" />
+          </AssociationSet>
+          <AssociationSet Name="PartenaireParAnnonceur" Association="MegaProductionBDDModel.PartenaireParAnnonceur">
+            <End Role="Annonceur" EntitySet="Annonceur" />
+            <End Role="PartenaireDiffusion" EntitySet="PartenaireDiffusion" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Annonceur">
+          <Key>
+            <PropertyRef Name="Identifiant" />
+          </Key>
+          <Property Name="Identifiant" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Libelle" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Mail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Telephone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Nom_Contact" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Prenom_Contact" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Mail_Contact" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Telephone_Contact" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Adresse" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Code_Postal" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Ville" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Casting" Relationship="MegaProductionBDDModel.FK_Casting_Annonceur" FromRole="Annonceur" ToRole="Casting" />
+          <NavigationProperty Name="Metier" Relationship="MegaProductionBDDModel.MetierParAnnonceur" FromRole="Annonceur" ToRole="Metier" />
+          <NavigationProperty Name="Offre" Relationship="MegaProductionBDDModel.OffreAnnonceur" FromRole="Annonceur" ToRole="Offre" />
+          <NavigationProperty Name="PartenaireDiffusion" Relationship="MegaProductionBDDModel.PartenaireParAnnonceur" FromRole="Annonceur" ToRole="PartenaireDiffusion" />
+        </EntityType>
+        <EntityType Name="Artiste">
+          <Key>
+            <PropertyRef Name="Identifiant" />
+          </Key>
+          <Property Name="Identifiant" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nom" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Prenom" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Mail" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Telephone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Adresse" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Code_Postal" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Ville" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CV" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Casting" Relationship="MegaProductionBDDModel.ArtisteParCasting" FromRole="Artiste" ToRole="Casting" />
+        </EntityType>
+        <EntityType Name="Casting">
+          <Key>
+            <PropertyRef Name="Identifiant" />
+          </Key>
+          <Property Name="Identifiant" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Libelle" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Date_Debut_Publication" Type="DateTime" Precision="3" />
+          <Property Name="Nb_Jour_Diffusion" Type="Int32" Nullable="false" />
+          <Property Name="Date_Debut_Contrat" Type="DateTime" Precision="3" />
+          <Property Name="Nb_Poste" Type="Int32" />
+          <Property Name="Description_Poste" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Description_Profil" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Type_Contrat" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Adresse_Contrat" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Annonceur" Type="Int64" Nullable="false" />
+          <Property Name="Employe" Type="Int64" Nullable="false" />
+          <Property Name="Metier" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Annonceur1" Relationship="MegaProductionBDDModel.FK_Casting_Annonceur" FromRole="Casting" ToRole="Annonceur" />
+          <NavigationProperty Name="Employe1" Relationship="MegaProductionBDDModel.FK_Casting_Employe" FromRole="Casting" ToRole="Employe" />
+          <NavigationProperty Name="Metier1" Relationship="MegaProductionBDDModel.FK_Casting_Metier" FromRole="Casting" ToRole="Metier" />
+          <NavigationProperty Name="Artiste" Relationship="MegaProductionBDDModel.ArtisteParCasting" FromRole="Casting" ToRole="Artiste" />
+        </EntityType>
+        <EntityType Name="ContenuEditorial">
+          <Key>
+            <PropertyRef Name="Identifiant" />
+          </Key>
+          <Property Name="Identifiant" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Titre" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Date_Publication" Type="DateTime" Precision="3" />
+          <Property Name="Type" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="TypeContenuEditorial" Relationship="MegaProductionBDDModel.FK_ContenuEditorial_TypeContenuEditorial" FromRole="ContenuEditorial" ToRole="TypeContenuEditorial" />
+          <NavigationProperty Name="Metier" Relationship="MegaProductionBDDModel.MetierContenu" FromRole="ContenuEditorial" ToRole="Metier" />
+        </EntityType>
+        <EntityType Name="Domaine">
+          <Key>
+            <PropertyRef Name="Identifiant" />
+          </Key>
+          <Property Name="Identifiant" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Libelle" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Metier" Relationship="MegaProductionBDDModel.FK_Metier_Domaine" FromRole="Domaine" ToRole="Metier" />
+          <NavigationProperty Name="PartenaireDiffusion" Relationship="MegaProductionBDDModel.DomaineParPartenaire" FromRole="Domaine" ToRole="PartenaireDiffusion" />
+        </EntityType>
+        <EntityType Name="Employe">
+          <Key>
+            <PropertyRef Name="Identifiant" />
+          </Key>
+          <Property Name="Identifiant" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Role" Type="Int64" Nullable="false" />
+          <Property Name="Nom" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Prenom" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Mail" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Nom_Utilisateur" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Mot_De_Passe" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Casting" Relationship="MegaProductionBDDModel.FK_Casting_Employe" FromRole="Employe" ToRole="Casting" />
+          <NavigationProperty Name="RoleEmploye" Relationship="MegaProductionBDDModel.FK_Employe_RoleEmploye" FromRole="Employe" ToRole="RoleEmploye" />
+        </EntityType>
+        <EntityType Name="Metier">
+          <Key>
+            <PropertyRef Name="Identifiant" />
+          </Key>
+          <Property Name="Identifiant" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Libelle" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Domaine" Type="Int64" />
+          <NavigationProperty Name="Casting" Relationship="MegaProductionBDDModel.FK_Casting_Metier" FromRole="Metier" ToRole="Casting" />
+          <NavigationProperty Name="Domaine1" Relationship="MegaProductionBDDModel.FK_Metier_Domaine" FromRole="Metier" ToRole="Domaine" />
+          <NavigationProperty Name="ContenuEditorial" Relationship="MegaProductionBDDModel.MetierContenu" FromRole="Metier" ToRole="ContenuEditorial" />
+          <NavigationProperty Name="Annonceur" Relationship="MegaProductionBDDModel.MetierParAnnonceur" FromRole="Metier" ToRole="Annonceur" />
+        </EntityType>
+        <EntityType Name="Offre">
+          <Key>
+            <PropertyRef Name="Identifiant" />
+          </Key>
+          <Property Name="Identifiant" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Type" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Tarif" Type="Double" Nullable="false" />
+          <Property Name="Nb_Casting" Type="Int32" />
+          <NavigationProperty Name="Annonceur" Relationship="MegaProductionBDDModel.OffreAnnonceur" FromRole="Offre" ToRole="Annonceur" />
+        </EntityType>
+        <EntityType Name="PartenaireDiffusion">
+          <Key>
+            <PropertyRef Name="Identifiant" />
+          </Key>
+          <Property Name="Identifiant" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Libelle" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Mail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Telephone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Nom_Contact" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Prenom_Contact" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Mail_Contact" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Telephone_Contact" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Adresse" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Code_Postal" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Ville" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Site" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Nom_Utilisateur" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Mot_De_Passe" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Domaine" Relationship="MegaProductionBDDModel.DomaineParPartenaire" FromRole="PartenaireDiffusion" ToRole="Domaine" />
+          <NavigationProperty Name="Annonceur" Relationship="MegaProductionBDDModel.PartenaireParAnnonceur" FromRole="PartenaireDiffusion" ToRole="Annonceur" />
+        </EntityType>
+        <EntityType Name="RoleEmploye">
+          <Key>
+            <PropertyRef Name="Identifiant" />
+          </Key>
+          <Property Name="Identifiant" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Libelle" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Employe" Relationship="MegaProductionBDDModel.FK_Employe_RoleEmploye" FromRole="RoleEmploye" ToRole="Employe" />
+        </EntityType>
+        <EntityType Name="TypeContenuEditorial">
+          <Key>
+            <PropertyRef Name="Identifiant" />
+          </Key>
+          <Property Name="Identifiant" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Libelle" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ContenuEditorial" Relationship="MegaProductionBDDModel.FK_ContenuEditorial_TypeContenuEditorial" FromRole="TypeContenuEditorial" ToRole="ContenuEditorial" />
+        </EntityType>
+        <Association Name="FK_Casting_Annonceur">
+          <End Type="MegaProductionBDDModel.Annonceur" Role="Annonceur" Multiplicity="1" />
+          <End Type="MegaProductionBDDModel.Casting" Role="Casting" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Annonceur">
+              <PropertyRef Name="Identifiant" />
+            </Principal>
+            <Dependent Role="Casting">
+              <PropertyRef Name="Annonceur" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Casting_Employe">
+          <End Type="MegaProductionBDDModel.Employe" Role="Employe" Multiplicity="1" />
+          <End Type="MegaProductionBDDModel.Casting" Role="Casting" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employe">
+              <PropertyRef Name="Identifiant" />
+            </Principal>
+            <Dependent Role="Casting">
+              <PropertyRef Name="Employe" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Casting_Metier">
+          <End Type="MegaProductionBDDModel.Metier" Role="Metier" Multiplicity="1" />
+          <End Type="MegaProductionBDDModel.Casting" Role="Casting" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Metier">
+              <PropertyRef Name="Identifiant" />
+            </Principal>
+            <Dependent Role="Casting">
+              <PropertyRef Name="Metier" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ContenuEditorial_TypeContenuEditorial">
+          <End Type="MegaProductionBDDModel.TypeContenuEditorial" Role="TypeContenuEditorial" Multiplicity="1" />
+          <End Type="MegaProductionBDDModel.ContenuEditorial" Role="ContenuEditorial" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeContenuEditorial">
+              <PropertyRef Name="Identifiant" />
+            </Principal>
+            <Dependent Role="ContenuEditorial">
+              <PropertyRef Name="Type" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Metier_Domaine">
+          <End Type="MegaProductionBDDModel.Domaine" Role="Domaine" Multiplicity="0..1" />
+          <End Type="MegaProductionBDDModel.Metier" Role="Metier" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Domaine">
+              <PropertyRef Name="Identifiant" />
+            </Principal>
+            <Dependent Role="Metier">
+              <PropertyRef Name="Domaine" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employe_RoleEmploye">
+          <End Type="MegaProductionBDDModel.RoleEmploye" Role="RoleEmploye" Multiplicity="1" />
+          <End Type="MegaProductionBDDModel.Employe" Role="Employe" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RoleEmploye">
+              <PropertyRef Name="Identifiant" />
+            </Principal>
+            <Dependent Role="Employe">
+              <PropertyRef Name="Role" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ArtisteParCasting">
+          <End Type="MegaProductionBDDModel.Artiste" Role="Artiste" Multiplicity="*" />
+          <End Type="MegaProductionBDDModel.Casting" Role="Casting" Multiplicity="*" />
+        </Association>
+        <Association Name="DomaineParPartenaire">
+          <End Type="MegaProductionBDDModel.Domaine" Role="Domaine" Multiplicity="*" />
+          <End Type="MegaProductionBDDModel.PartenaireDiffusion" Role="PartenaireDiffusion" Multiplicity="*" />
+        </Association>
+        <Association Name="MetierContenu">
+          <End Type="MegaProductionBDDModel.ContenuEditorial" Role="ContenuEditorial" Multiplicity="*" />
+          <End Type="MegaProductionBDDModel.Metier" Role="Metier" Multiplicity="*" />
+        </Association>
+        <Association Name="MetierParAnnonceur">
+          <End Type="MegaProductionBDDModel.Annonceur" Role="Annonceur" Multiplicity="*" />
+          <End Type="MegaProductionBDDModel.Metier" Role="Metier" Multiplicity="*" />
+        </Association>
+        <Association Name="OffreAnnonceur">
+          <End Type="MegaProductionBDDModel.Annonceur" Role="Annonceur" Multiplicity="*" />
+          <End Type="MegaProductionBDDModel.Offre" Role="Offre" Multiplicity="*" />
+        </Association>
+        <Association Name="PartenaireParAnnonceur">
+          <End Type="MegaProductionBDDModel.Annonceur" Role="Annonceur" Multiplicity="*" />
+          <End Type="MegaProductionBDDModel.PartenaireDiffusion" Role="PartenaireDiffusion" Multiplicity="*" />
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MegaProductionBDDModelStoreContainer" CdmEntityContainer="MegaProductionBDDEntities">
+          <EntitySetMapping Name="Annonceur">
+            <EntityTypeMapping TypeName="MegaProductionBDDModel.Annonceur">
+              <MappingFragment StoreEntitySet="Annonceur">
+                <ScalarProperty Name="Ville" ColumnName="Ville" />
+                <ScalarProperty Name="Code_Postal" ColumnName="Code_Postal" />
+                <ScalarProperty Name="Adresse" ColumnName="Adresse" />
+                <ScalarProperty Name="Telephone_Contact" ColumnName="Telephone_Contact" />
+                <ScalarProperty Name="Mail_Contact" ColumnName="Mail_Contact" />
+                <ScalarProperty Name="Prenom_Contact" ColumnName="Prenom_Contact" />
+                <ScalarProperty Name="Nom_Contact" ColumnName="Nom_Contact" />
+                <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+                <ScalarProperty Name="Mail" ColumnName="Mail" />
+                <ScalarProperty Name="Libelle" ColumnName="Libelle" />
+                <ScalarProperty Name="Identifiant" ColumnName="Identifiant" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Artiste">
+            <EntityTypeMapping TypeName="MegaProductionBDDModel.Artiste">
+              <MappingFragment StoreEntitySet="Artiste">
+                <ScalarProperty Name="CV" ColumnName="CV" />
+                <ScalarProperty Name="Ville" ColumnName="Ville" />
+                <ScalarProperty Name="Code_Postal" ColumnName="Code_Postal" />
+                <ScalarProperty Name="Adresse" ColumnName="Adresse" />
+                <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+                <ScalarProperty Name="Mail" ColumnName="Mail" />
+                <ScalarProperty Name="Prenom" ColumnName="Prenom" />
+                <ScalarProperty Name="Nom" ColumnName="Nom" />
+                <ScalarProperty Name="Identifiant" ColumnName="Identifiant" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Casting">
+            <EntityTypeMapping TypeName="MegaProductionBDDModel.Casting">
+              <MappingFragment StoreEntitySet="Casting">
+                <ScalarProperty Name="Metier" ColumnName="Metier" />
+                <ScalarProperty Name="Employe" ColumnName="Employe" />
+                <ScalarProperty Name="Annonceur" ColumnName="Annonceur" />
+                <ScalarProperty Name="Adresse_Contrat" ColumnName="Adresse_Contrat" />
+                <ScalarProperty Name="Type_Contrat" ColumnName="Type_Contrat" />
+                <ScalarProperty Name="Description_Profil" ColumnName="Description_Profil" />
+                <ScalarProperty Name="Description_Poste" ColumnName="Description_Poste" />
+                <ScalarProperty Name="Nb_Poste" ColumnName="Nb_Poste" />
+                <ScalarProperty Name="Date_Debut_Contrat" ColumnName="Date_Debut_Contrat" />
+                <ScalarProperty Name="Nb_Jour_Diffusion" ColumnName="Nb_Jour_Diffusion" />
+                <ScalarProperty Name="Date_Debut_Publication" ColumnName="Date_Debut_Publication" />
+                <ScalarProperty Name="Libelle" ColumnName="Libelle" />
+                <ScalarProperty Name="Identifiant" ColumnName="Identifiant" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ContenuEditorial">
+            <EntityTypeMapping TypeName="MegaProductionBDDModel.ContenuEditorial">
+              <MappingFragment StoreEntitySet="ContenuEditorial">
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Date_Publication" ColumnName="Date_Publication" />
+                <ScalarProperty Name="Titre" ColumnName="Titre" />
+                <ScalarProperty Name="Identifiant" ColumnName="Identifiant" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Domaine">
+            <EntityTypeMapping TypeName="MegaProductionBDDModel.Domaine">
+              <MappingFragment StoreEntitySet="Domaine">
+                <ScalarProperty Name="Libelle" ColumnName="Libelle" />
+                <ScalarProperty Name="Identifiant" ColumnName="Identifiant" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employe">
+            <EntityTypeMapping TypeName="MegaProductionBDDModel.Employe">
+              <MappingFragment StoreEntitySet="Employe">
+                <ScalarProperty Name="Mot_De_Passe" ColumnName="Mot_De_Passe" />
+                <ScalarProperty Name="Nom_Utilisateur" ColumnName="Nom_Utilisateur" />
+                <ScalarProperty Name="Mail" ColumnName="Mail" />
+                <ScalarProperty Name="Prenom" ColumnName="Prenom" />
+                <ScalarProperty Name="Nom" ColumnName="Nom" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="Identifiant" ColumnName="Identifiant" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Metier">
+            <EntityTypeMapping TypeName="MegaProductionBDDModel.Metier">
+              <MappingFragment StoreEntitySet="Metier">
+                <ScalarProperty Name="Domaine" ColumnName="Domaine" />
+                <ScalarProperty Name="Libelle" ColumnName="Libelle" />
+                <ScalarProperty Name="Identifiant" ColumnName="Identifiant" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Offre">
+            <EntityTypeMapping TypeName="MegaProductionBDDModel.Offre">
+              <MappingFragment StoreEntitySet="Offre">
+                <ScalarProperty Name="Nb_Casting" ColumnName="Nb_Casting" />
+                <ScalarProperty Name="Tarif" ColumnName="Tarif" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Identifiant" ColumnName="Identifiant" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PartenaireDiffusion">
+            <EntityTypeMapping TypeName="MegaProductionBDDModel.PartenaireDiffusion">
+              <MappingFragment StoreEntitySet="PartenaireDiffusion">
+                <ScalarProperty Name="Mot_De_Passe" ColumnName="Mot_De_Passe" />
+                <ScalarProperty Name="Nom_Utilisateur" ColumnName="Nom_Utilisateur" />
+                <ScalarProperty Name="Site" ColumnName="Site" />
+                <ScalarProperty Name="Ville" ColumnName="Ville" />
+                <ScalarProperty Name="Code_Postal" ColumnName="Code_Postal" />
+                <ScalarProperty Name="Adresse" ColumnName="Adresse" />
+                <ScalarProperty Name="Telephone_Contact" ColumnName="Telephone_Contact" />
+                <ScalarProperty Name="Mail_Contact" ColumnName="Mail_Contact" />
+                <ScalarProperty Name="Prenom_Contact" ColumnName="Prenom_Contact" />
+                <ScalarProperty Name="Nom_Contact" ColumnName="Nom_Contact" />
+                <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+                <ScalarProperty Name="Mail" ColumnName="Mail" />
+                <ScalarProperty Name="Libelle" ColumnName="Libelle" />
+                <ScalarProperty Name="Identifiant" ColumnName="Identifiant" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RoleEmploye">
+            <EntityTypeMapping TypeName="MegaProductionBDDModel.RoleEmploye">
+              <MappingFragment StoreEntitySet="RoleEmploye">
+                <ScalarProperty Name="Libelle" ColumnName="Libelle" />
+                <ScalarProperty Name="Identifiant" ColumnName="Identifiant" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TypeContenuEditorial">
+            <EntityTypeMapping TypeName="MegaProductionBDDModel.TypeContenuEditorial">
+              <MappingFragment StoreEntitySet="TypeContenuEditorial">
+                <ScalarProperty Name="Libelle" ColumnName="Libelle" />
+                <ScalarProperty Name="Identifiant" ColumnName="Identifiant" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="ArtisteParCasting" TypeName="MegaProductionBDDModel.ArtisteParCasting" StoreEntitySet="ArtisteParCasting">
+            <EndProperty Name="Casting">
+              <ScalarProperty Name="Identifiant" ColumnName="Casting" />
+            </EndProperty>
+            <EndProperty Name="Artiste">
+              <ScalarProperty Name="Identifiant" ColumnName="Artiste" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="DomaineParPartenaire" TypeName="MegaProductionBDDModel.DomaineParPartenaire" StoreEntitySet="DomaineParPartenaire">
+            <EndProperty Name="PartenaireDiffusion">
+              <ScalarProperty Name="Identifiant" ColumnName="Partenaire" />
+            </EndProperty>
+            <EndProperty Name="Domaine">
+              <ScalarProperty Name="Identifiant" ColumnName="Domaine" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="MetierContenu" TypeName="MegaProductionBDDModel.MetierContenu" StoreEntitySet="MetierContenu">
+            <EndProperty Name="Metier">
+              <ScalarProperty Name="Identifiant" ColumnName="Metier" />
+            </EndProperty>
+            <EndProperty Name="ContenuEditorial">
+              <ScalarProperty Name="Identifiant" ColumnName="Contenu_Editorial" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="MetierParAnnonceur" TypeName="MegaProductionBDDModel.MetierParAnnonceur" StoreEntitySet="MetierParAnnonceur">
+            <EndProperty Name="Metier">
+              <ScalarProperty Name="Identifiant" ColumnName="Metier" />
+            </EndProperty>
+            <EndProperty Name="Annonceur">
+              <ScalarProperty Name="Identifiant" ColumnName="Annonceur" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="OffreAnnonceur" TypeName="MegaProductionBDDModel.OffreAnnonceur" StoreEntitySet="OffreAnnonceur">
+            <EndProperty Name="Offre">
+              <ScalarProperty Name="Identifiant" ColumnName="Offre" />
+            </EndProperty>
+            <EndProperty Name="Annonceur">
+              <ScalarProperty Name="Identifiant" ColumnName="Annonceur" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="PartenaireParAnnonceur" TypeName="MegaProductionBDDModel.PartenaireParAnnonceur" StoreEntitySet="PartenaireParAnnonceur">
+            <EndProperty Name="PartenaireDiffusion">
+              <ScalarProperty Name="Identifiant" ColumnName="Partenaire_Diffusion" />
+            </EndProperty>
+            <EndProperty Name="Annonceur">
+              <ScalarProperty Name="Identifiant" ColumnName="Annonceur" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Aucun" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

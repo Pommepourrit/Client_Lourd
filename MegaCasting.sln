@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2046
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MegaCastingApp", "MegaCastingApp\MegaCastingApp.csproj", "{3D87D6F2-DE71-4543-BC85-1BEB62AA63DC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MegaCastingModel", "MegaCastingModel\MegaCastingModel.csproj", "{E98F87B3-F152-4C33-A45E-3076CDC60A46}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3D87D6F2-DE71-4543-BC85-1BEB62AA63DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D87D6F2-DE71-4543-BC85-1BEB62AA63DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D87D6F2-DE71-4543-BC85-1BEB62AA63DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D87D6F2-DE71-4543-BC85-1BEB62AA63DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E98F87B3-F152-4C33-A45E-3076CDC60A46}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E98F87B3-F152-4C33-A45E-3076CDC60A46}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E98F87B3-F152-4C33-A45E-3076CDC60A46}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E98F87B3-F152-4C33-A45E-3076CDC60A46}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {18C8BA32-FA4E-4BE8-AC2E-AADF6C62A1D2}
+	EndGlobalSection
+EndGlobal
