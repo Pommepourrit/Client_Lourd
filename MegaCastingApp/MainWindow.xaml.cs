@@ -34,6 +34,23 @@ namespace MegaCastingApp
         }
 
 
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            Hide();
+            LoginWindow loginWindow = new LoginWindow();
+            loginWindow.ShowDialog();
+            LoginViewModel viewModel = loginWindow.DataContext as LoginViewModel;
+            if (viewModel.employeAConnecter != null)
+            {
+                this.Title += " - " + viewModel.employeAConnecter.Prenom+ " " + viewModel.employeAConnecter.Nom ;
+                Show();
+            }
+            else
+            {
+                Close();
+            }
+        }
+
         private void ListCasting_Click(object sender, RoutedEventArgs e)
         {
             Contenu.Children.Clear();

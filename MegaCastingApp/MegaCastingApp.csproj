@@ -82,6 +82,9 @@
     </ApplicationDefinition>
     <Compile Include="Converters\FalseToVisibleConverter.cs" />
     <Compile Include="Converters\NullToFalseConverter.cs" />
+    <Compile Include="LoginWindow.xaml.cs">
+      <DependentUpon>LoginWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Utils\Utils.cs" />
     <Compile Include="ViewModel\Items\ContenuEditorialItemViewModel.cs" />
     <Compile Include="ViewModel\Items\DomaineItemViewModel.cs" />
@@ -104,6 +107,7 @@
     <Compile Include="ViewModel\Listings\PartenaireDiffusionListViewModel.cs" />
     <Compile Include="ViewModel\Listings\RoleEmployeListViewModel.cs" />
     <Compile Include="ViewModel\Listings\TypeContenuEditorialListViewModel.cs" />
+    <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="Windows\Items\AnnonceurItemWindow.xaml.cs">
       <DependentUpon>AnnonceurItemWindow.xaml</DependentUpon>
@@ -165,6 +169,10 @@
     <Compile Include="Windows\Listings\TypeContenuEditorialListWindow.xaml.cs">
       <DependentUpon>TypeContenuEditorialListWindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="LoginWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
